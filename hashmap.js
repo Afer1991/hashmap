@@ -115,11 +115,11 @@ class LinkedList {
     };
   }
   
-  contains(val) {
+  contains(key) {
     let curr = this.hd;
   
     while (curr) {
-      if (curr.value === val) {
+      if (curr.key === key) {
         return true;
       } else {
         curr = curr.nextNode;
