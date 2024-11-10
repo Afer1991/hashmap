@@ -177,6 +177,8 @@ class LinkedList {
 class HashMap {
   constructor() {
     this.buckets = new Array(16);
+    this.loadfactor = 0.75;
+    this.size = 0;
   }
 
   hash(key) {
