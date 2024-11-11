@@ -323,7 +323,70 @@ class HashMap {
       return false;
     };
   }
+
+  length() {
+    return this.size;
+  }
+
+  clear() {
+    this.buckets = new Array(16);
+    this.size = 0;
+  }
+
+  keys() {
+    const arr = new Array();
+
+    for (let i = 0; i < this.buckets.length; i++) {
+      if (this.buckets[i]) {
+        let node = this.buckets[i].hd;
+
+        while (node) {
+          arr.push(node.key);
+          node = node.nextNode;
+        };
+      };
+    };
+
+    return arr;
+  }
+
+  values() {
+    const arr = new Array();
+
+    for (let i = 0; i < this.buckets.length; i++) {
+      if (this.buckets[i]) {
+        let node = this.buckets[i].hd;
+
+        while (node) {
+          arr.push(node.value);
+          node = node.nextNode;
+        };
+      };
+    };
+
+    return arr;
+  }
+  
+  entries() {
+    const arr = new Array();
+
+    for (let i = 0; i < this.buckets.length; i++) {
+      if (this.buckets[i]) {
+        let node = this.buckets[i].hd;
+
+        while (node) {
+          arr.push([node.key, node.value]);
+          node = node.nextNode;
+        };
+      };
+    };
+
+    return arr;
+  }
+
 }
+
+
 
 
 
