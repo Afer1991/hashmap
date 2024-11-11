@@ -213,10 +213,6 @@ class HashMap {
     return hashCode;
   }
 
-  set(key, value) {
-    
-  }
-
   rehash() {
     const temp = this.buckets;
     
