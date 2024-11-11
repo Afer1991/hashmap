@@ -304,6 +304,25 @@ class HashMap {
       return false;
     };
   }
+
+  remove(key) {
+    if (this.has(key)) {
+
+      const index = this.hash(key);
+      const keyIndex = this.buckets[index].find(key);
+
+      this.buckets[index].removeAt(keyIndex);
+      this.size--;
+
+      if (this.buckets[index].size() === 0) {
+        this.buckets[index] = empty;
+      };
+
+      return true;
+    } else {
+      return false;
+    };
+  }
 }
 
 
