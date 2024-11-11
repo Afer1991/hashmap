@@ -250,6 +250,29 @@ class HashMap {
       this.rehash();
     };
   }
+
+  get(key) {
+
+    const index = this.hash(key);
+
+    if (this.buckets[index] && this.buckets[index].contains(key)) {
+      let node = this.buckets[index].hd;
+      const keyIndex = this.buckets[index].find(key);
+
+      for (let i = 0; i <= keyIndex; i++) {
+        if (node.key === key) {
+          return node.value;
+        } else {
+          node = node.nextNode;
+        };
+      };
+
+    } else {
+      return null;
+    }
+
+  }
 }
+
 
 
