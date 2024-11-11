@@ -272,6 +272,17 @@ class HashMap {
     }
 
   }
+
+  has(key) {
+
+    const index = this.hash(key);
+
+    if (this.buckets[index] && this.buckets[index].contains(key)) {
+      return true;
+    } else {
+      return false;
+    };
+  }
 }
 
 
