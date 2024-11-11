@@ -195,5 +195,61 @@ class HashMap {
   set(key, value) {
     
   }
+
+  rehash() {
+    const temp = this.buckets;
+    
+    this.buckets = new Array(this.buckets.length * 2);
+
+    for (let i = 0; i < temp.length; i++) {
+      
+      if (temp[i]) {
+        let node = temp[i].hd;
+
+        while (node) {
+          const index = this.hash(node.key);
+    
+          if (!this.buckets[index]) {
+            this.buckets[index] = new LinkedList();
+          };
+          
+          this.buckets[index].append(node.key, node.value);
+          node = node.nextNode;
+        };
+      };
+    
+    };
+  }
+
+  set(key, value) {
+
+    const index = this.hash(key);
+    
+    if (!this.buckets[index]) {
+      this.buckets[index] = new LinkedList();
+      this.buckets[index].append(key, value);
+      this.size++;
+    } else if (this.buckets[index].contains(key)) {
+      let node = this.buckets[index].hd;
+      const keyIndex = this.buckets[index].find(key);
+
+      for (let i = 0; i <= keyIndex; i++) {
+        if (node.key === key) {
+          node.value = value;
+        } else {
+          node = node.nextNode;
+        };
+      };
+
+    } else {
+      this.buckets[index].append(key, value);
+      this.size++;
+    };
+
+    if (this.size > this.buckets.length * this.loadfactor) {
+      this.rehash();
+    };
+  }
 }
+
 
